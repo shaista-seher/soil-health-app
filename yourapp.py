@@ -306,8 +306,7 @@ elif K < 120:
     reason = 'Potassium deficiency'
 else:
     reason = 'All nutrients in optimal range'
-
-return soil_health, reason
+  return soil_health, reason
 
 def recommend_fertilizer(N, P, K, soil_health): 
     if fert_model is None or scaler is None: 
