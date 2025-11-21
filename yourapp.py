@@ -259,8 +259,8 @@ def nutrient_warnings(N, P, K):
                 "N": "Avoid extra urea; too much reduces flowering.", 
                 "P": "Avoid extra P; excess affects micronutrient uptake.", 
                 "K": "Avoid extra potash; excess reduces Mg/Ca uptake." 
-                }[nut] 
-                msgs.append(f"{mapping_name[nut]} ({level}): {high_msg}") 
+            }[nut] 
+            msgs.append(f"{mapping_name[nut]} ({level}): {high_msg}") 
     return msgs
 
 def icar_tip(primary, soil_health):
