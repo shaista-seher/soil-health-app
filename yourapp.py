@@ -409,7 +409,9 @@ if run_button:
 
 #---------------------------
 
-st.markdown("---") st.markdown("Extra features: Dataset preview, charts, tips, and an action plan. Export results by copying or taking screenshots.") st.markdown("How to run:\n1. Place your GIF at ./assets/bg.gif (optional).\n2. Put soilhealth.csv and fertilizer.csv in the same folder or upload via sidebar.\n3. Install dependencies: pip install -r requirements.txt (see requirements below).\n4. Run: streamlit run streamlit_soil_health_app.py.")
+st.markdown("---") 
+st.markdown("Extra features: Dataset preview, charts, tips, and an action plan. Export results by copying or taking screenshots.") 
+st.markdown("How to run:\n1. Place your GIF at ./assets/bg.gif (optional).\n2. Put soilhealth.csv and fertilizer.csv in the same folder or upload via sidebar.\n3. Install dependencies: pip install -r requirements.txt (see requirements below).\n4. Run: streamlit run streamlit_soil_health_app.py.")
 
 st.markdown("### Requirements (example)\n``` streamlit pandas numpy scikit-learn matplotlib```")
 
