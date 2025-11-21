@@ -342,7 +342,8 @@ if show_dataset:
         st.dataframe(soil_df.head()) 
     if fert_df is not None: 
         st.write("Fertilizer dataset (first 5 rows)") 
-        st.dataframe(fert_df.head()) st.markdown("---")
+        st.dataframe(fert_df.head()) 
+    st.markdown("---")
 
 if soil_acc is not None: 
     st.info(f"Soil health model accuracy: {soil_acc100:.2f}%") 
