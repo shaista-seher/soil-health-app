@@ -267,7 +267,9 @@ def icar_tip(primary, soil_health):
     if soil_health == 'Low':
          return f"Apply {primary} with compost/FYM in 2–3 splits as per ICAR guidelines." 
     elif soil_health == 'Moderate':
-         return f"Apply {primary} in 2 splits and include compost." else: return f"Apply {primary} once and maintain crop rotation."
+         return f"Apply {primary} in 2 splits and include compost." 
+    else: 
+         return f"Apply {primary} once and maintain crop rotation."
 
 #---------------------------
 
