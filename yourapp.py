@@ -279,8 +279,14 @@ def icar_tip(primary, soil_health):
 
 def predict_soil_health(N, P, K, pH):
     try:
-        pred = soil_model.predict([[N, P, K, pH]])[0]
+        # Predict numeric class (0,1,2)
+        pred_num = soil_model.predict([[N, P, K, pH]])[0]
 
+        # Convert number → label
+        mapping = {0: "Low", 1: "Moderate", 2: "Healthy"}
+        pred = mapping.get(pred_num, "Low")
+
+        # Reason
         if pred == "Healthy":
             reason = "Your soil has good nutrient balance and suitable pH levels."
         elif pred == "Moderate":
