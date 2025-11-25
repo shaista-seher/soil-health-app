@@ -345,9 +345,10 @@ if show_dataset:
     st.markdown("---")
 
 if soil_acc is not None: 
-    st.info(f"Soil health model accuracy: {soil_acc100:.2f}%") 
+    st.info(f"Soil health model accuracy: {soil_acc*100:.2f}%") 
 if fert_acc is not None: 
-    st.info(f"Fertilizer model CV accuracy: {fert_acc100:.2f}%")
+    st.info(f"Fertilizer model CV accuracy: {fert_acc*100:.2f}%")
+
 
 #---------------------------
 
