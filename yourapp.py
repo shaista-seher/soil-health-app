@@ -74,8 +74,8 @@ def clean_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 #---------------------------
 
-@st.experimental_singleton 
-def load_datasets(): 
+@st.cache_resource
+def load_datasets():
     soil_df = None 
     fert_df = None 
     # try local files first 
