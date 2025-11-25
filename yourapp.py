@@ -277,24 +277,21 @@ def icar_tip(primary, soil_health):
 
 #---------------------------
 
-def predict_soil_health(N, P, K, pH): 
-    # Fallback if model not trained 
-    if soil_model is None: 
-        # simple rule-based fallback 
-        if pH < 5.5 or pH > 8.5: 
-            return 'Low', 'Extreme pH level' 
-        if N < 200: 
-            return 'Low', 'Nitrogen deficiency'
-        if P < 15: 
-            return 'Low', 'Phosphorus deficiency' 
-        if K < 120: 
-            return 'Low', 'Potassium deficiency' 
-        return 'Moderate', 'Rule-based fallback: nutrients OK'
+def predict_soil_health(N, P, K, pH):
+    try:
+        pred = soil_model.predict([[N, P, K, pH]])[0]
 
-user_df = pd.DataFrame([[N, P, K, pH, N/(P+1e-6)]], columns=['n','p','k','ph','n_p_ratio'])
-pred_enc = soil_model.predict(user_df)[0]
-mapping = {0:'Low', 1:'Moderate', 2:'Healthy'}
-soil_health = mapping.get(pred_enc, 'Low')
+        if pred == "Healthy":
+            reason = "Your soil has good nutrient balance and suitable pH levels."
+        elif pred == "Moderate":
+            reason = "Your soil shows slight nutrient imbalance. Consider mild correction."
+        else:
+            reason = "Your soil nutrients are imbalanced; improvement is needed."
+
+        return pred, reason
+
+    except Exception as e:
+        return "Unknown", f"Prediction error: {e}"
 # reason
 if pH < 5.5 or pH > 8.5:
     reason = 'Extreme pH level'
