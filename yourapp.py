@@ -278,21 +278,45 @@ def icar_tip(primary, soil_health):
 #---------------------------
 
 def predict_soil_health(N, P, K, pH):
+    if soil_model is None:
+        return "Unknown", "Model not loaded"
+    
     try:
-        # Predict numeric class (0,1,2)
-        pred_num = soil_model.predict([[N, P, K, pH]])[0]
+        # Calculate n_p_ratio (same as training)
+        n_p_ratio = N / (P + 1e-6)
+        
+        # Predict with all 5 features (matching training data)
+        pred_num = soil_model.predict([[N, P, K, pH, n_p_ratio]])[0]
 
         # Convert number → label
         mapping = {0: "Low", 1: "Moderate", 2: "Healthy"}
-        pred = mapping.get(pred_num, "Low")
+        pred = mapping.get(pred_num, "Unknown")
 
-        # Reason
+        # Generate reason based on prediction and conditions
         if pred == "Healthy":
             reason = "Your soil has good nutrient balance and suitable pH levels."
         elif pred == "Moderate":
-            reason = "Your soil shows slight nutrient imbalance. Consider mild correction."
-        else:
-            reason = "Your soil nutrients are imbalanced; improvement is needed."
+            if pH < 5.5 or pH > 8.5:
+                reason = "Extreme pH level affecting soil health."
+            elif N < 200:
+                reason = "Slight nitrogen deficiency detected."
+            elif P < 15:
+                reason = "Slight phosphorus deficiency detected."
+            elif K < 120:
+                reason = "Slight potassium deficiency detected."
+            else:
+                reason = "Your soil shows slight nutrient imbalance. Consider mild correction."
+        else:  # Low
+            if pH < 5.5 or pH > 8.5:
+                reason = "Extreme pH level - immediate correction needed."
+            elif N < 200:
+                reason = "Severe nitrogen deficiency detected."
+            elif P < 15:
+                reason = "Severe phosphorus deficiency detected."
+            elif K < 120:
+                reason = "Severe potassium deficiency detected."
+            else:
+                reason = "Your soil nutrients are imbalanced; improvement is needed."
 
         return pred, reason
 
