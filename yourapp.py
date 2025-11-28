@@ -22,13 +22,62 @@ st.set_page_config(page_title="Soils Park",
                    initial_sidebar_state="expanded")
 
 #-------------------------
-# Add light mint green background
+# Add light mint green background and styling
 #-------------------------
 def add_mint_background():
     css = """
     <style>
     .stApp {
-        background-color: #f0fdf4;
+        background-color: #dcfce7;
+    }
+    
+    /* Style text inputs with green background */
+    .stTextInput > div > div > input {
+        background-color: #d1fae5 !important;
+        color: #065f46 !important;
+        border: 2px solid #059669 !important;
+        font-weight: 500;
+    }
+    
+    /* Style text input labels */
+    .stTextInput > label {
+        color: #065f46 !important;
+        font-weight: 600;
+    }
+    
+    /* Style metric containers */
+    .stMetric {
+        background-color: #d1fae5;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #059669;
+    }
+    
+    /* Style metric labels and values */
+    .stMetric > label {
+        color: #065f46 !important;
+    }
+    
+    .stMetric > div {
+        color: #065f46 !important;
+    }
+    
+    /* Make all text darker green */
+    p, span, div {
+        color: #065f46;
+    }
+    
+    /* Style info boxes */
+    .stAlert {
+        background-color: #d1fae5 !important;
+        color: #065f46 !important;
+        border: 1px solid #059669 !important;
+    }
+    
+    /* Style success boxes */
+    .stSuccess {
+        background-color: #d1fae5 !important;
+        color: #065f46 !important;
     }
     </style>
     """
@@ -419,7 +468,7 @@ elif st.session_state.page == 'output':
     st.markdown("<br>", unsafe_allow_html=True)
     
     # Display input values
-    st.markdown("### 📥 Input Values")
+    st.markdown("<h3 style='color:#065f46;'>📥 Input Values</h3>", unsafe_allow_html=True)
     input_col1, input_col2, input_col3, input_col4 = st.columns(4)
     input_col1.metric("Nitrogen (N)", f"{N} kg/ha")
     input_col2.metric("Phosphorus (P)", f"{P} kg/ha")
@@ -429,22 +478,22 @@ elif st.session_state.page == 'output':
     st.markdown("---")
     
     # Main results
-    st.markdown("### 🎯 Primary Results")
+    st.markdown("<h3 style='color:#065f46;'>🎯 Primary Results</h3>", unsafe_allow_html=True)
     c1, c2, c3 = st.columns(3)
     
     # Color coding for soil health
     health_color = {"Healthy": "🟢", "Moderate": "🟡", "Low": "🔴", "Unknown": "⚪"}
-    c1.markdown(f"#### {health_color.get(soil_health, '⚪')} Soil Health")
-    c1.markdown(f"### **{soil_health}**")
-    c1.write(f"*{reason}*")
+    c1.markdown(f"<h4 style='color:#065f46;'>{health_color.get(soil_health, '⚪')} Soil Health</h4>", unsafe_allow_html=True)
+    c1.markdown(f"<h3 style='color:#065f46;'><strong>{soil_health}</strong></h3>", unsafe_allow_html=True)
+    c1.markdown(f"<p style='color:#065f46;'><em>{reason}</em></p>", unsafe_allow_html=True)
     
-    c2.markdown("#### 💊 Recommended Fertilizer")
-    c2.markdown(f"### **{primary}**")
-    c2.write(f"*Confidence: {conf*100:.2f}%*")
+    c2.markdown("<h4 style='color:#065f46;'>💊 Recommended Fertilizer</h4>", unsafe_allow_html=True)
+    c2.markdown(f"<h3 style='color:#065f46;'><strong>{primary}</strong></h3>", unsafe_allow_html=True)
+    c2.markdown(f"<p style='color:#065f46;'><em>Confidence: {conf*100:.2f}%</em></p>", unsafe_allow_html=True)
     
-    c3.markdown("#### 🧪 pH Category")
-    c3.markdown(f"### **{ph_cat}**")
-    c3.write(f"*{ph_text}*")
+    c3.markdown("<h4 style='color:#065f46;'>🧪 pH Category</h4>", unsafe_allow_html=True)
+    c3.markdown(f"<h3 style='color:#065f46;'><strong>{ph_cat}</strong></h3>", unsafe_allow_html=True)
+    c3.markdown(f"<p style='color:#065f46;'><em>{ph_text}</em></p>", unsafe_allow_html=True)
     
     st.markdown("---")
     
@@ -457,27 +506,27 @@ elif st.session_state.page == 'output':
         st.markdown("---")
         
         # ICAR Tips
-        st.markdown("### 🌱 ICAR Action Plan")
+        st.markdown("<h3 style='color:#065f46;'>🌱 ICAR Action Plan</h3>", unsafe_allow_html=True)
         st.info(icar_tip(primary, soil_health))
-        st.write(f"**pH Management:** {ph_text}")
+        st.markdown(f"<p style='color:#065f46;'><strong>pH Management:</strong> {ph_text}</p>", unsafe_allow_html=True)
         
         st.markdown("---")
         
         # Nutrient Warnings
-        st.markdown("### ⚠️ Nutrient Analysis & Quick Actions")
+        st.markdown("<h3 style='color:#065f46;'>⚠️ Nutrient Analysis & Quick Actions</h3>", unsafe_allow_html=True)
         warnings = nutrient_warnings(N, P, K)
         for msg in warnings:
-            st.write("• " + msg)
+            st.markdown(f"<p style='color:#065f46;'>• {msg}</p>", unsafe_allow_html=True)
         
         # Charts
         if show_charts:
             st.markdown("---")
-            st.markdown("### 📈 Visual Analysis")
+            st.markdown("<h3 style='color:#065f46;'>📈 Visual Analysis</h3>", unsafe_allow_html=True)
             
             chart_col1, chart_col2 = st.columns(2)
             
             with chart_col1:
-                st.markdown("**Nutrient Distribution**")
+                st.markdown("<p style='color:#065f46;'><strong>Nutrient Distribution</strong></p>", unsafe_allow_html=True)
                 fig, ax = plt.subplots(figsize=(6,4))
                 nutrients = ['Nitrogen', 'Phosphorus', 'Potassium']
                 vals = [N, P, K]
@@ -498,7 +547,7 @@ elif st.session_state.page == 'output':
                 st.pyplot(fig)
             
             with chart_col2:
-                st.markdown("**pH Status**")
+                st.markdown("<p style='color:#065f46;'><strong>pH Status</strong></p>", unsafe_allow_html=True)
                 fig2, ax2 = plt.subplots(figsize=(6,4))
                 
                 # pH scale visualization
