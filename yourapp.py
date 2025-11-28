@@ -702,6 +702,10 @@ elif st.session_state.page == 'input':
                         
                 except ValueError:
                     st.error("❌ Please enter valid numeric values for all fields")
+         # Back to language selection button
+    if st.button("🌐 Change Language", use_container_width=True):
+        st.session_state.page = 'language'
+        st.rerun()             
     
     # Show dataset preview if enabled
     if show_dataset:
