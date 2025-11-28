@@ -1,6 +1,6 @@
 #streamlit_soil_health_app.py
 
-#Soil Health & Fertilizer Recommender - Streamlit Web App (GIF background)
+#Soil Health & Fertilizer Recommender - Streamlit Web App
 
 #Requirements: streamlit, pandas, numpy, scikit-learn, matplotlib
 
@@ -17,40 +17,24 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt 
 from matplotlib.ticker import MaxNLocator
 
-st.set_page_config(page_title="AI in Soil Health & Fertilizer Recommendation", 
+st.set_page_config(page_title="Soils Park", 
                    layout="wide", 
                    initial_sidebar_state="expanded")
 
 #-------------------------
-#Helper: add GIF background via base64 encoded CSS
+# Add light mint green background
 #-------------------------
-
-def add_gif_background(gif_path: str, opacity: float = 0.18): 
-    if not os.path.exists(gif_path): 
-        return 
-    with open(gif_path, "rb") as f: 
-        data = f.read() 
-    b64 = base64.b64encode(data).decode() 
-    css = f""" 
-    <style> 
-    .stApp {{ 
-        background-image: url('data:image/gif;base64,{b64}'); 
-        background-size: cover; 
-        background-attachment: fixed; 
-        background-repeat: no-repeat; 
-        opacity: 1; 
-    }} 
-    .app-overlay {{ 
-        position: fixed; 
-        top: 0; left: 0; right: 0; bottom: 0; 
-        background: rgba(255,255,255,{opacity}); 
-        pointer-events: none; 
-        z-index: 0; 
-    }} 
-    </style> 
-    <div class="app-overlay"></div> 
-    """ 
+def add_mint_background():
+    css = """
+    <style>
+    .stApp {
+        background-color: #f0fdf4;
+    }
+    </style>
+    """
     st.markdown(css, unsafe_allow_html=True)
+
+add_mint_background()
 
 #---------------------------
 #Load & clean columns
@@ -82,7 +66,7 @@ soil_df, fert_df = load_datasets()
 #---------------------------
 
 with st.sidebar: 
-    st.header("AI in Soil Health") 
+    st.header("Soils Park") 
     st.write("Upload datasets if not present in project folder") 
     soil_upload = st.file_uploader("Upload soilhealth.csv", type=['csv']) 
     fert_upload = st.file_uploader("Upload fertilizer.csv", type=['csv'])
@@ -93,9 +77,6 @@ with st.sidebar:
         fert_df = pd.read_csv(fert_upload)
 
     st.markdown("---")
-    st.markdown("Assets")
-    st.write("Place your GIF at: assets/bg.gif (recommended).")
-    st.markdown("---")
     
     # Advanced options in sidebar
     st.subheader("Advanced Options") 
@@ -103,9 +84,6 @@ with st.sidebar:
     show_charts = st.checkbox("Show nutrient charts", value=True)
     
     st.caption("Developed: AI Soil Health & Fertilizer Recommender")
-
-#Try to add gif background if exists
-add_gif_background(os.path.join('assets', 'bg.gif'))
 
 #---------------------------
 #Validate datasets
@@ -190,7 +168,7 @@ def ph_category_and_text(pH):
         return "Neutral", "Soil is neutral — maintain with compost." 
     if 7.5 < pH <= 8.5: 
         return "Slightly alkaline", "Soil slightly alkaline — apply gypsum." 
-    return "Highly alkaline", "Soil highly alkaline — add gypsum + compost."
+    return "Highly alkaline", "Soil highly alkalic — add gypsum + compost."
 
 def nutrient_level(val, nut): 
     if nut == 'N': 
@@ -296,7 +274,7 @@ def recommend_fertilizer(N, P, K, soil_health):
 #---------------------------
 
 if 'page' not in st.session_state:
-    st.session_state.page = 'input'
+    st.session_state.page = 'start'
 if 'N' not in st.session_state:
     st.session_state.N = None
 if 'P' not in st.session_state:
@@ -309,12 +287,47 @@ if 'show_details' not in st.session_state:
     st.session_state.show_details = False
 
 #---------------------------
+# START PAGE
+#---------------------------
+
+if st.session_state.page == 'start':
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    
+    # Center content
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col2:
+        st.markdown("""
+        <h1 style='text-align: center; color: #059669; font-size: 72px; font-family: Georgia, serif; margin-bottom: 20px;'>
+            SOILS PARK
+        </h1>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("""
+        <p style='text-align: center; color: #10b981; font-size: 20px; margin-bottom: 50px;'>
+            🌱 AI-Powered Soil Health & Fertilizer Guidance 🌱
+        </p>
+        """, unsafe_allow_html=True)
+        
+        # Start button
+        if st.button("🚀 Start Journey", use_container_width=True, type="primary"):
+            st.session_state.page = 'input'
+            st.rerun()
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <p style='text-align: center; color: #6b7280; font-size: 14px;'>
+            Smart recommendations powered by machine learning
+        </p>
+        """, unsafe_allow_html=True)
+
+#---------------------------
 # INPUT PAGE
 #---------------------------
 
-if st.session_state.page == 'input':
-    st.markdown("<h1 style='text-align:center; color:#2b6a2f;'>🌾 AI in Soil Health Prediction & Fertilizer Recommendation</h1>", unsafe_allow_html=True) 
-    st.markdown("<p style='text-align:center; font-size:14px; color:#4b7a3b;'>Smart farm recommendations powered by ML — enter your soil test values to get instant guidance.</p>", unsafe_allow_html=True)
+elif st.session_state.page == 'input':
+    st.markdown("<h1 style='text-align:center; color:#059669;'>🌾 SOILS PARK</h1>", unsafe_allow_html=True) 
+    st.markdown("<p style='text-align:center; font-size:16px; color:#10b981;'>Smart farm recommendations powered by ML — enter your soil test values to get instant guidance.</p>", unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -369,11 +382,11 @@ if st.session_state.page == 'input':
         col1, col2 = st.columns(2)
         with col1:
             if soil_df is not None: 
-                st.write("*Soil Dataset (first 5 rows)*") 
+                st.write("**Soil Dataset (first 5 rows)**") 
                 st.dataframe(soil_df.head(), use_container_width=True) 
         with col2:
             if fert_df is not None: 
-                st.write("*Fertilizer Dataset (first 5 rows)*") 
+                st.write("**Fertilizer Dataset (first 5 rows)**") 
                 st.dataframe(fert_df.head(), use_container_width=True)
     
     # Show model accuracy
@@ -402,7 +415,7 @@ elif st.session_state.page == 'output':
     ph_cat, ph_text = ph_category_and_text(pH)
     
     # Header
-    st.markdown("<h1 style='text-align:center; color:#2b6a2f;'>📊 Analysis Results</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:center; color:#059669;'>📊 SOILS PARK - Analysis Results</h1>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
     # Display input values
@@ -422,16 +435,16 @@ elif st.session_state.page == 'output':
     # Color coding for soil health
     health_color = {"Healthy": "🟢", "Moderate": "🟡", "Low": "🔴", "Unknown": "⚪"}
     c1.markdown(f"#### {health_color.get(soil_health, '⚪')} Soil Health")
-    c1.markdown(f"### *{soil_health}*")
-    c1.write(f"{reason}")
+    c1.markdown(f"### **{soil_health}**")
+    c1.write(f"*{reason}*")
     
     c2.markdown("#### 💊 Recommended Fertilizer")
-    c2.markdown(f"### *{primary}*")
-    c2.write(f"Confidence: {conf*100:.2f}%")
+    c2.markdown(f"### **{primary}**")
+    c2.write(f"*Confidence: {conf*100:.2f}%*")
     
     c3.markdown("#### 🧪 pH Category")
-    c3.markdown(f"### *{ph_cat}*")
-    c3.write(f"{ph_text}")
+    c3.markdown(f"### **{ph_cat}**")
+    c3.write(f"*{ph_text}*")
     
     st.markdown("---")
     
@@ -446,12 +459,12 @@ elif st.session_state.page == 'output':
         # ICAR Tips
         st.markdown("### 🌱 ICAR Action Plan")
         st.info(icar_tip(primary, soil_health))
-        st.write(f"*pH Management:* {ph_text}")
+        st.write(f"**pH Management:** {ph_text}")
         
         st.markdown("---")
         
         # Nutrient Warnings
-        st.markdown("### ⚠ Nutrient Analysis & Quick Actions")
+        st.markdown("### ⚠️ Nutrient Analysis & Quick Actions")
         warnings = nutrient_warnings(N, P, K)
         for msg in warnings:
             st.write("• " + msg)
@@ -464,7 +477,7 @@ elif st.session_state.page == 'output':
             chart_col1, chart_col2 = st.columns(2)
             
             with chart_col1:
-                st.markdown("*Nutrient Distribution*")
+                st.markdown("**Nutrient Distribution**")
                 fig, ax = plt.subplots(figsize=(6,4))
                 nutrients = ['Nitrogen', 'Phosphorus', 'Potassium']
                 vals = [N, P, K]
@@ -485,7 +498,7 @@ elif st.session_state.page == 'output':
                 st.pyplot(fig)
             
             with chart_col2:
-                st.markdown("*pH Status*")
+                st.markdown("**pH Status**")
                 fig2, ax2 = plt.subplots(figsize=(6,4))
                 
                 # pH scale visualization
