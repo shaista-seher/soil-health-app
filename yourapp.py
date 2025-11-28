@@ -86,6 +86,224 @@ def add_mint_background():
 add_mint_background()
 
 #---------------------------
+# Language Translations
+#---------------------------
+
+translations = {
+    'english': {
+        'app_title': 'SOILS PARK',
+        'app_subtitle': '🌱 AI-Powered Soil Health & Fertilizer Guidance 🌱',
+        'start_button': '🚀 Start Journey',
+        'language_page_title': 'Choose Your Language',
+        'language_page_subtitle': 'Select your preferred language for the application',
+        'continue_button': 'Continue',
+        'input_page_title': '🌾 SOILS PARK',
+        'input_page_subtitle': 'Smart farm recommendations powered by ML — enter your soil test values to get instant guidance.',
+        'enter_values': '📝 Enter Soil Test Values',
+        'nitrogen': 'Nitrogen (N) - kg/ha',
+        'phosphorus': 'Phosphorus (P) - kg/ha',
+        'potassium': 'Potassium (K) - kg/ha',
+        'ph_value': 'pH Value',
+        'analyze_button': '🔍 Analyze Soil',
+        'output_page_title': '📊 SOILS PARK - Analysis Results',
+        'input_values': '📥 Input Values',
+        'soil_health': 'Soil Health',
+        'recommended_fertilizer': 'Recommended Fertilizer',
+        'ph_category': 'pH Category',
+        'detailed_recommendations': '📋 Get Detailed Recommendations',
+        'icar_plan': '🌱 ICAR Action Plan',
+        'nutrient_analysis': '⚠️ Nutrient Analysis & Quick Actions',
+        'visual_analysis': '📈 Visual Analysis',
+        'nutrient_distribution': 'Nutrient Distribution',
+        'ph_status': 'pH Status',
+        'analyze_new': '🔄 Analyze New Sample',
+        'footer': 'Built for educational & prototyping purposes. Always validate recommendations with local soil labs and agronomists.',
+        'soil_health_reasons': {
+            'Healthy': 'Your soil has good nutrient balance and suitable pH levels.',
+            'Moderate': 'Your soil shows slight nutrient imbalance. Consider mild correction.',
+            'Low': 'Your soil nutrients are imbalanced; improvement is needed.'
+        },
+        'ph_texts': {
+            'Highly acidic': 'Soil is highly acidic — mix agricultural lime.',
+            'Slightly acidic': 'Soil slightly acidic — add agricultural lime.',
+            'Neutral': 'Soil is neutral — maintain with compost.',
+            'Slightly alkaline': 'Soil slightly alkaline — apply gypsum.',
+            'Highly alkaline': 'Soil highly alkalic — add gypsum + compost.'
+        }
+    },
+    'hindi': {
+        'app_title': 'मृदा पार्क',
+        'app_subtitle': '🌱 एआई-संचालित मृदा स्वास्थ्य और उर्वरक मार्गदर्शन 🌱',
+        'start_button': '🚀 यात्रा शुरू करें',
+        'language_page_title': 'अपनी भाषा चुनें',
+        'language_page_subtitle': 'एप्लिकेशन के लिए अपनी पसंदीदा भाषा चुनें',
+        'continue_button': 'जारी रखें',
+        'input_page_title': '🌾 मृदा पार्क',
+        'input_page_subtitle': 'एमएल द्वारा संचालित स्मार्ट फार्म सिफारिशें — त्वरित मार्गदर्शन प्राप्त करने के लिए अपने मृदा परीक्षण मान दर्ज करें।',
+        'enter_values': '📝 मृदा परीक्षण मान दर्ज करें',
+        'nitrogen': 'नाइट्रोजन (N) - किग्रा/हेक्टेयर',
+        'phosphorus': 'फॉस्फोरस (P) - किग्रा/हेक्टेयर',
+        'potassium': 'पोटैशियम (K) - किग्रा/हेक्टेयर',
+        'ph_value': 'pH मान',
+        'analyze_button': '🔍 मृदा का विश्लेषण करें',
+        'output_page_title': '📊 मृदा पार्क - विश्लेषण परिणाम',
+        'input_values': '📥 इनपुट मान',
+        'soil_health': 'मृदा स्वास्थ्य',
+        'recommended_fertilizer': 'सुझाया गया उर्वरक',
+        'ph_category': 'pH श्रेणी',
+        'detailed_recommendations': '📋 विस्तृत सिफारिशें प्राप्त करें',
+        'icar_plan': '🌱 आईसीएआर कार्य योजना',
+        'nutrient_analysis': '⚠️ पोषक तत्व विश्लेषण और त्वरित कार्रवाई',
+        'visual_analysis': '📈 दृश्य विश्लेषण',
+        'nutrient_distribution': 'पोषक तत्व वितरण',
+        'ph_status': 'pH स्थिति',
+        'analyze_new': '🔄 नया नमूना विश्लेषण करें',
+        'footer': 'शैक्षिक और प्रोटोटाइप उद्देश्यों के लिए बनाया गया। स्थानीय मृदा प्रयोगशालाओं और कृषि विशेषज्ञों के साथ सिफारिशों को हमेशा सत्यापित करें।',
+        'soil_health_reasons': {
+            'Healthy': 'आपकी मिट्टी में अच्छा पोषक तत्व संतुलन और उपयुक्त पीएच स्तर है।',
+            'Moderate': 'आपकी मिट्टी में थोड़ा पोषक तत्व असंतुलन दिखता है। हल्के सुधार पर विचार करें।',
+            'Low': 'आपके मृदा पोषक तत्व असंतुलित हैं; सुधार की आवश्यकता है।'
+        },
+        'ph_texts': {
+            'Highly acidic': 'मिट्टी अत्यधिक अम्लीय है — कृषि चूना मिलाएं।',
+            'Slightly acidic': 'मिट्टी थोड़ी अम्लीय है — कृषि चूना डालें।',
+            'Neutral': 'मिट्टी तटस्थ है — कम्पोस्ट के साथ बनाए रखें।',
+            'Slightly alkaline': 'मिट्टी थोड़ी क्षारीय है — जिप्सम लगाएं।',
+            'Highly alkaline': 'मिट्टी अत्यधिक क्षारीय है — जिप्सम + कम्पोस्ट डालें।'
+        }
+    },
+    'telugu': {
+        'app_title': 'సాయిల్ పార్క్',
+        'app_subtitle': '🌱 AI-నడిచే నేల ఆరోగ్యం & ఎరువు మార్గదర్శకత్వం 🌱',
+        'start_button': '🚀 ప్రయాణం ప్రారంభించండి',
+        'language_page_title': 'మీ భాషను ఎంచుకోండి',
+        'language_page_subtitle': 'అప్లికేషన్ కోసం మీకు నచ్చిన భాషను ఎంచుకోండి',
+        'continue_button': 'కొనసాగించు',
+        'input_page_title': '🌾 సాయిల్ పార్క్',
+        'input_page_subtitle': 'ML ద్వారా నడిచే స్మార్ట్ ఫార్మ్ సిఫార్సులు — తక్షణ మార్గదర్శకత్వం పొందడానికి మీ నేల పరీక్ష విలువలను నమోదు చేయండి.',
+        'enter_values': '📝 నేల పరీక్ష విలువలను నమోదు చేయండి',
+        'nitrogen': 'నత్రజని (N) - kg/ha',
+        'phosphorus': 'భాస్వరం (P) - kg/ha',
+        'potassium': 'పొటాషియం (K) - kg/ha',
+        'ph_value': 'pH విలువ',
+        'analyze_button': '🔍 నేల విశ్లేషించండి',
+        'output_page_title': '📊 సాయిల్ పార్క్ - విశ్లేషణ ఫలితాలు',
+        'input_values': '📥 ఇన్పుట్ విలువలు',
+        'soil_health': 'నేల ఆరోగ్యం',
+        'recommended_fertilizer': 'సిఫారసు చేసిన ఎరువు',
+        'ph_category': 'pH వర్గం',
+        'detailed_recommendations': '📋 వివరణాత్మక సిఫార్సులను పొందండి',
+        'icar_plan': '🌱 ఐసిఎఆర్ యాక్షన్ ప్లాన్',
+        'nutrient_analysis': '⚠️ పోషక విశ్లేషణ & త్వరిత చర్యలు',
+        'visual_analysis': '📈 దృశ్య విశ్లేషణ',
+        'nutrient_distribution': 'పోషక పంపిణీ',
+        'ph_status': 'pH స్థితి',
+        'analyze_new': '🔄 కొత్త నమూనా విశ్లేషించండి',
+        'footer': 'విద్యా & ప్రోటోటైప్ ప్రయోజనాల కోసం నిర్మించబడింది. స్థానిక నేల ప్రయోగశాలలు మరియు వ్యవసాయ నిపుణులతో సిఫార్సులను ఎల్లప్పుడూ ధృవీకరించండి.',
+        'soil_health_reasons': {
+            'Healthy': 'మీ నేలలో మంచి పోషక సమతుల్యత మరియు తగిన pH స్థాయిలు ఉన్నాయి.',
+            'Moderate': 'మీ నేల స్వల్ప పోషక అసమతుల్యతను చూపుతుంది. తేలికపాటి దిద్దుబాటు పరిగణించండి.',
+            'Low': 'మీ నేల పోషకాలు అసమతుల్యంగా ఉన్నాయి; మెరుగుదల అవసరం.'
+        },
+        'ph_texts': {
+            'Highly acidic': 'నేల అత్యంత ఆమ్లం — వ్యవసాయ సున్నాని కలపండి.',
+            'Slightly acidic': 'నేల కొంచెం ఆమ్లం — వ్యవసాయ సున్నాని జోడించండి.',
+            'Neutral': 'నేల తటస్థంగా ఉంది — కంపోస్ట్తో నిర్వహించండి.',
+            'Slightly alkaline': 'నేల కొంచెం క్షారం — జిప్సం వర్తించండి.',
+            'Highly alkaline': 'నేల అత్యంత క్షారం — జిప్సం + కంపోస్ట్ జోడించండి.'
+        }
+    },
+    'tamil': {
+        'app_title': 'மண் பூங்கா',
+        'app_subtitle': '🌱 AI-இயக்கும் மண் ஆரோக்கியம் & உர பரிந்துரை 🌱',
+        'start_button': '🚀 பயணத்தை தொடங்கவும்',
+        'language_page_title': 'உங்கள் மொழியை தேர்ந்தெடுக்கவும்',
+        'language_page_subtitle': 'விண்ணப்பத்திற்கான உங்கள் விருப்ப மொழியைத் தேர்ந்தெடுக்கவும்',
+        'continue_button': 'தொடரவும்',
+        'input_page_title': '🌾 மண் பூங்கா',
+        'input_page_subtitle': 'ML-இயக்கும் ஸ்மார்ட் பண்ணை பரிந்துரைகள் — உடனடி வழிகாட்டுதலுக்கு உங்கள் மண் சோதனை மதிப்புகளை உள்ளிடவும்.',
+        'enter_values': '📝 மண் சோதனை மதிப்புகளை உள்ளிடவும்',
+        'nitrogen': 'நைட்ரஜன் (N) - kg/ha',
+        'phosphorus': 'பாஸ்பரஸ் (P) - kg/ha',
+        'potassium': 'பொட்டாசியம் (K) - kg/ha',
+        'ph_value': 'pH மதிப்பு',
+        'analyze_button': '🔍 மண்ணை பகுப்பாய்வு செய்யவும்',
+        'output_page_title': '📊 மண் பூங்கா - பகுப்பாய்வு முடிவுகள்',
+        'input_values': '📥 உள்ளீட்டு மதிப்புகள்',
+        'soil_health': 'மண் ஆரோக்கியம்',
+        'recommended_fertilizer': 'பரிந்துரைக்கப்பட்ட உரம்',
+        'ph_category': 'pH வகை',
+        'detailed_recommendations': '📋 விரிவான பரிந்துரைகளைப் பெறுக',
+        'icar_plan': '🌾 ஐசிஏஆர் செயல் திட்டம்',
+        'nutrient_analysis': '⚠️ ஊட்டச்சத்து பகுப்பாய்வு & விரைவு நடவடிக்கைகள்',
+        'visual_analysis': '📈 காட்சி பகுப்பாய்வு',
+        'nutrient_distribution': 'ஊட்டச்சத்து விநியோகம்',
+        'ph_status': 'pH நிலை',
+        'analyze_new': '🔄 புதிய மாதிரியை பகுப்பாய்வு செய்யவும்',
+        'footer': 'கல்வி & முன்மாதிரி நோக்கங்களுக்காக கட்டப்பட்டது. உள்ளூர் மண் ஆய்வகங்கள் மற்றும் விவசாய நிபுணர்களுடன் பரிந்துரைகளை எப்போதும் சரிபார்க்கவும்.',
+        'soil_health_reasons': {
+            'Healthy': 'உங்கள் மண்ணில் நல்ல ஊட்டச்சத்து சமநிலை மற்றும் பொருத்தமான pH நிலைகள் உள்ளன.',
+            'Moderate': 'உங்கள் மண் சிறிய ஊட்டச்சத்து சமநிலையின்மையைக் காட்டுகிறது. லேசான திருத்தத்தைக் கவனியுங்கள்.',
+            'Low': 'உங்கள் மண் ஊட்டச்சத்துக்கள் சமநிலையற்றவை; மேம்பாடு தேவை.'
+        },
+        'ph_texts': {
+            'Highly acidic': 'மண் மிகவும் அமிலமானது — விவசாய சுண்ணாம்பை கலக்கவும்.',
+            'Slightly acidic': 'மண் சற்று அமிலமானது — விவசாய சுண்ணாம்பை சேர்க்கவும்.',
+            'Neutral': 'மண் நடுநிலையானது — கம்போஸ்ட்டுடன் பராமரிக்கவும்.',
+            'Slightly alkaline': 'மண் சற்று காரமானது — ஜிப்சம் பயன்படுத்தவும்.',
+            'Highly alkaline': 'மண் மிகவும் காரமானது — ஜிப்சம் + கம்போஸ்ட் சேர்க்கவும்.'
+        }
+    },
+    'kannada': {
+        'app_title': 'ಮಣ್ಣಿನ ಪಾರ್ಕ್',
+        'app_subtitle': '🌱 AI-ಚಾಲಿತ ಮಣ್ಣಿನ ಆರೋಗ್ಯ ಮತ್ತು ಎರುವ ಹುಡುಕಾಟ 🌱',
+        'start_button': '🚀 ಪ್ರಯಾಣ ಪ್ರಾರಂಭಿಸಿ',
+        'language_page_title': 'ನಿಮ್ಮ ಭಾಷೆಯನ್ನು ಆರಿಸಿ',
+        'language_page_subtitle': 'ಅಪ್ಲಿಕೇಶನ್ಗಾಗಿ ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆಯನ್ನು ಆರಿಸಿ',
+        'continue_button': 'ಮುಂದುವರಿಸಿ',
+        'input_page_title': '🌾 ಮಣ್ಣಿನ ಪಾರ್ಕ್',
+        'input_page_subtitle': 'ML-ಚಾಲಿತ ಸ್ಮಾರ್ಟ್ ಫಾರ್ಮ್ ಶಿಫಾರಸುಗಳು — ತ್ವರಿತ ಮಾರ್ಗದರ್ಶನ ಪಡೆಯಲು ನಿಮ್ಮ ಮಣ್ಣಿನ ಪರೀಕ್ಷಾ ಮೌಲ್ಯಗಳನ್ನು ನಮೂದಿಸಿ.',
+        'enter_values': '📝 ಮಣ್ಣಿನ ಪರೀಕ್ಷಾ ಮೌಲ್ಯಗಳನ್ನು ನಮೂದಿಸಿ',
+        'nitrogen': 'ನೈಟ್ರೋಜನ್ (N) - kg/ha',
+        'phosphorus': 'ಫಾಸ್ಫರಸ್ (P) - kg/ha',
+        'potassium': 'ಪೊಟಾಶಿಯಂ (K) - kg/ha',
+        'ph_value': 'pH ಮೌಲ್ಯ',
+        'analyze_button': '🔍 ಮಣ್ಣನ್ನು ವಿಶ್ಲೇಷಿಸಿ',
+        'output_page_title': '📊 ಮಣ್ಣಿನ ಪಾರ್ಕ್ - ವಿಶ್ಲೇಷಣೆ ಫಲಿತಾಂಶಗಳು',
+        'input_values': '📥 ಇನ್ಪುಟ್ ಮೌಲ್ಯಗಳು',
+        'soil_health': 'ಮಣ್ಣಿನ ಆರೋಗ್ಯ',
+        'recommended_fertilizer': 'ಶಿಫಾರಸು ಮಾಡಿದ ಎರುವು',
+        'ph_category': 'pH ವರ್ಗ',
+        'detailed_recommendations': '📋 ವಿವರವಾದ ಶಿಫಾರಸುಗಳನ್ನು ಪಡೆಯಿರಿ',
+        'icar_plan': '🌾 ಐಸಿಎಆರ್ ಕ್ರಿಯಾ ಯೋಜನೆ',
+        'nutrient_analysis': '⚠️ ಪೋಷಕ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ತ್ವರಿತ ಕ್ರಮಗಳು',
+        'visual_analysis': '📈 ದೃಶ್ಯ ವಿಶ್ಲೇಷಣೆ',
+        'nutrient_distribution': 'ಪೋಷಕ ವಿತರಣೆ',
+        'ph_status': 'pH ಸ್ಥಿತಿ',
+        'analyze_new': '🔄 ಹೊಸ ಮಾದರಿ ವಿಶ್ಲೇಷಿಸಿ',
+        'footer': 'ಶೈಕ್ಷಣಿಕ ಮತ್ತು ಪ್ರೋಟೋಟೈಪ್ ಉದ್ದೇಶಗಳಿಗಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ. ಸ್ಥಳೀಯ ಮಣ್ಣಿನ ಪ್ರಯೋಗಶಾಲೆಗಳು ಮತ್ತು ಕೃಷಿ ತಜ್ಞರೊಂದಿಗೆ ಶಿಫಾರಸುಗಳನ್ನು ಯಾವಾಗಲೂ ಪರಿಶೀಲಿಸಿ.',
+        'soil_health_reasons': {
+            'Healthy': 'ನಿಮ್ಮ ಮಣ್ಣಿನಲ್ಲಿ ಉತ್ತಮ ಪೋಷಕ ಸಮತೋಲನ ಮತ್ತು ಸೂಕ್ತ pH ಮಟ್ಟಗಳಿವೆ.',
+            'Moderate': 'ನಿಮ್ಮ ಮಣ್ಣು ಸ್ವಲ್ಪ ಪೋಷಕ ಅಸಮತೋಲನವನ್ನು ತೋರಿಸುತ್ತದೆ. ಸೌಮ್ಯ ತಿದ್ದುಪಡಿಯನ್ನು ಪರಿಗಣಿಸಿ.',
+            'Low': 'ನಿಮ್ಮ ಮಣ್ಣಿನ ಪೋಷಕಗಳು ಅಸಮತೋಲಿತವಾಗಿವೆ; ಸುಧಾರಣೆ ಅಗತ್ಯವಿದೆ.'
+        },
+        'ph_texts': {
+            'Highly acidic': 'ಮಣ್ಣು ಅತ್ಯಂತ ಆಮ್ಲೀಯವಾಗಿದೆ — ಕೃಷಿ ಸುಣ್ಣವನ್ನು ಬೆರೆಸಿ.',
+            'Slightly acidic': 'ಮಣ್ಣು ಸ್ವಲ್ಪ ಆಮ್ಲೀಯವಾಗಿದೆ — ಕೃಷಿ ಸುಣ್ಣವನ್ನು ಸೇರಿಸಿ.',
+            'Neutral': 'ಮಣ್ಣು ತಟಸ್ಥವಾಗಿದೆ — ಕಂಪೋಸ್ಟ್ನೊಂದಿಗೆ ನಿರ್ವಹಿಸಿ.',
+            'Slightly alkaline': 'ಮಣ್ಣು ಸ್ವಲ್ಪ ಕ್ಷಾರೀಯವಾಗಿದೆ — ಜಿಪ್ಸಂ ಅನ್ನು ಅನ್ವಯಿಸಿ.',
+            'Highly alkaline': 'ಮಣ್ಣು ಅತ್ಯಂತ ಕ್ಷಾರೀಯವಾಗಿದೆ — ಜಿಪ್ಸಂ + ಕಂಪೋಸ್ಟ್ ಸೇರಿಸಿ.'
+        }
+    }
+}
+
+def get_translation(key, language='english'):
+    """Get translation for a given key in the specified language"""
+    if language in translations and key in translations[language]:
+        return translations[language][key]
+    return translations['english'][key]  # Fallback to English
+
+#---------------------------
 #Load & clean columns
 #---------------------------
 
@@ -208,16 +426,16 @@ if fert_df is not None:
 #Utility functions
 #---------------------------
 
-def ph_category_and_text(pH): 
+def ph_category_and_text(pH, language='english'): 
     if pH < 5.5: 
-        return "Highly acidic", "Soil is highly acidic — mix agricultural lime." 
+        return get_translation('Highly acidic', language), get_translation('ph_texts', language)['Highly acidic']
     if 5.5 <= pH < 6.5: 
-        return "Slightly acidic", "Soil slightly acidic — add agricultural lime." 
+        return get_translation('Slightly acidic', language), get_translation('ph_texts', language)['Slightly acidic']
     if 6.5 <= pH <= 7.5: 
-        return "Neutral", "Soil is neutral — maintain with compost." 
+        return get_translation('Neutral', language), get_translation('ph_texts', language)['Neutral']
     if 7.5 < pH <= 8.5: 
-        return "Slightly alkaline", "Soil slightly alkaline — apply gypsum." 
-    return "Highly alkaline", "Soil highly alkalic — add gypsum + compost."
+        return get_translation('Slightly alkaline', language), get_translation('ph_texts', language)['Slightly alkaline']
+    return get_translation('Highly alkaline', language), get_translation('ph_texts', language)['Highly alkaline']
 
 def nutrient_level(val, nut): 
     if nut == 'N': 
@@ -227,10 +445,27 @@ def nutrient_level(val, nut):
     if nut == 'K': 
         return "Low" if val < 110 else "Medium" if val <= 280 else "High"
 
-def nutrient_warnings(N, P, K): 
+def nutrient_warnings(N, P, K, language='english'): 
     msgs = [] 
-    mapping_name = {"N":"Nitrogen","P":"Phosphorus","K":"Potassium"} 
-    mapping_rec = {"N":"Urea","P":"DAP","K":"MOP"} 
+    mapping_name = {"N": "Nitrogen", "P": "Phosphorus", "K": "Potassium"}
+    mapping_rec = {"N": "Urea", "P": "DAP", "K": "MOP"} 
+    
+    # Translations for nutrient names and recommendations
+    if language != 'english':
+        nutrient_translations = {
+            'hindi': {"Nitrogen": "नाइट्रोजन", "Phosphorus": "फॉस्फोरस", "Potassium": "पोटैशियम", "Urea": "यूरिया", "DAP": "डीएपी", "MOP": "एमओपी"},
+            'telugu': {"Nitrogen": "నత్రజని", "Phosphorus": "భాస్వరం", "Potassium": "పొటాషియం", "Urea": "యూరియా", "DAP": "డీఏపీ", "MOP": "ఎమ్ఓపీ"},
+            'tamil': {"Nitrogen": "நைட்ரஜன்", "Phosphorus": "பாஸ்பரஸ்", "Potassium": "பொட்டாசியம்", "Urea": "யூரியா", "DAP": "டிஏபி", "MOP": "எம்ஓபி"},
+            'kannada': {"Nitrogen": "ನೈಟ್ರೋಜನ್", "Phosphorus": "ಫಾಸ್ಫರಸ್", "Potassium": "ಪೊಟಾಶಿಯಂ", "Urea": "ಯೂರಿಯಾ", "DAP": "ಡಿಎಪಿ", "MOP": "ಎಮ್ಒಪಿ"}
+        }
+        if language in nutrient_translations:
+            mapping_name = {"N": nutrient_translations[language]["Nitrogen"], 
+                          "P": nutrient_translations[language]["Phosphorus"], 
+                          "K": nutrient_translations[language]["Potassium"]}
+            mapping_rec = {"N": nutrient_translations[language]["Urea"], 
+                         "P": nutrient_translations[language]["DAP"], 
+                         "K": nutrient_translations[language]["MOP"]}
+    
     for val, nut in zip([N, P, K], ['N','P','K']): 
         level = nutrient_level(val, nut) 
         if level == "Low": 
@@ -246,7 +481,7 @@ def nutrient_warnings(N, P, K):
             msgs.append(f"{mapping_name[nut]} ({level}): {high_msg}") 
     return msgs
 
-def icar_tip(primary, soil_health):
+def icar_tip(primary, soil_health, language='english'):
     if soil_health == 'Low':
          return f"Apply {primary} with compost/FYM in 2–3 splits as per ICAR guidelines." 
     elif soil_health == 'Moderate':
@@ -258,7 +493,7 @@ def icar_tip(primary, soil_health):
 #Prediction logic
 #---------------------------
 
-def predict_soil_health(N, P, K, pH):
+def predict_soil_health(N, P, K, pH, language='english'):
     if soil_model is None:
         return "Unknown", "Model not loaded"
     
@@ -268,30 +503,11 @@ def predict_soil_health(N, P, K, pH):
         mapping = {0: "Low", 1: "Moderate", 2: "Healthy"}
         pred = mapping.get(pred_num, "Unknown")
 
-        if pred == "Healthy":
-            reason = "Your soil has good nutrient balance and suitable pH levels."
-        elif pred == "Moderate":
-            if pH < 5.5 or pH > 8.5:
-                reason = "Extreme pH level affecting soil health."
-            elif N < 200:
-                reason = "Slight nitrogen deficiency detected."
-            elif P < 15:
-                reason = "Slight phosphorus deficiency detected."
-            elif K < 120:
-                reason = "Slight potassium deficiency detected."
-            else:
-                reason = "Your soil shows slight nutrient imbalance. Consider mild correction."
+        # Get translated reason
+        if pred in ["Healthy", "Moderate", "Low"]:
+            reason = get_translation('soil_health_reasons', language)[pred]
         else:
-            if pH < 5.5 or pH > 8.5:
-                reason = "Extreme pH level - immediate correction needed."
-            elif N < 200:
-                reason = "Severe nitrogen deficiency detected."
-            elif P < 15:
-                reason = "Severe phosphorus deficiency detected."
-            elif K < 120:
-                reason = "Severe potassium deficiency detected."
-            else:
-                reason = "Your soil nutrients are imbalanced; improvement is needed."
+            reason = "Prediction unavailable"
 
         return pred, reason
 
@@ -334,6 +550,8 @@ if 'pH' not in st.session_state:
     st.session_state.pH = None
 if 'show_details' not in st.session_state:
     st.session_state.show_details = False
+if 'language' not in st.session_state:
+    st.session_state.language = 'english'
 
 #---------------------------
 # START PAGE
@@ -360,7 +578,7 @@ if st.session_state.page == 'start':
         
         # Start button
         if st.button("🚀 Start Journey", use_container_width=True, type="primary"):
-            st.session_state.page = 'input'
+            st.session_state.page = 'language'
             st.rerun()
         
         st.markdown("<br>", unsafe_allow_html=True)
@@ -371,12 +589,59 @@ if st.session_state.page == 'start':
         """, unsafe_allow_html=True)
 
 #---------------------------
+# LANGUAGE SELECTION PAGE
+#---------------------------
+
+elif st.session_state.page == 'language':
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    
+    # Center content
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col2:
+        st.markdown(f"""
+        <h1 style='text-align: center; color: #059669; font-size: 48px; font-family: Georgia, serif; margin-bottom: 20px;'>
+            {get_translation('language_page_title', 'english')}
+        </h1>
+        """, unsafe_allow_html=True)
+        
+        st.markdown(f"""
+        <p style='text-align: center; color: #10b981; font-size: 18px; margin-bottom: 50px;'>
+            {get_translation('language_page_subtitle', 'english')}
+        </p>
+        """, unsafe_allow_html=True)
+        
+        # Language selection buttons
+        languages = [
+            ('English', 'english'),
+            ('हिन्दी (Hindi)', 'hindi'),
+            ('తెలుగు (Telugu)', 'telugu'),
+            ('தமிழ் (Tamil)', 'tamil'),
+            ('ಕನ್ನಡ (Kannada)', 'kannada')
+        ]
+        
+        for lang_name, lang_code in languages:
+            if st.button(lang_name, use_container_width=True, key=lang_code):
+                st.session_state.language = lang_code
+                st.session_state.page = 'input'
+                st.rerun()
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        # Back button
+        if st.button("← Back", use_container_width=True):
+            st.session_state.page = 'start'
+            st.rerun()
+
+#---------------------------
 # INPUT PAGE
 #---------------------------
 
 elif st.session_state.page == 'input':
-    st.markdown("<h1 style='text-align:center; color:#059669;'>🌾 SOILS PARK</h1>", unsafe_allow_html=True) 
-    st.markdown("<p style='text-align:center; font-size:16px; color:#10b981;'>Smart farm recommendations powered by ML — enter your soil test values to get instant guidance.</p>", unsafe_allow_html=True)
+    current_lang = st.session_state.language
+    
+    st.markdown(f"<h1 style='text-align:center; color:#059669;'>{get_translation('input_page_title', current_lang)}</h1>", unsafe_allow_html=True) 
+    st.markdown(f"<p style='text-align:center; font-size:16px; color:#10b981;'>{get_translation('input_page_subtitle', current_lang)}</p>", unsafe_allow_html=True)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -384,15 +649,15 @@ elif st.session_state.page == 'input':
     col_left, col_center, col_right = st.columns([1, 2, 1])
     
     with col_center:
-        st.markdown("### 📝 Enter Soil Test Values")
+        st.markdown(f"### {get_translation('enter_values', current_lang)}")
         
         with st.form("soil_input_form"):
-            N_input = st.text_input("Nitrogen (N) - kg/ha", placeholder="e.g., 200", help="Range: 0-600 kg/ha")
-            P_input = st.text_input("Phosphorus (P) - kg/ha", placeholder="e.g., 30", help="Range: 0-120 kg/ha")
-            K_input = st.text_input("Potassium (K) - kg/ha", placeholder="e.g., 150", help="Range: 0-800 kg/ha")
-            pH_input = st.text_input("pH Value", placeholder="e.g., 6.5", help="Range: 3.5-10.0")
+            N_input = st.text_input(get_translation('nitrogen', current_lang), placeholder="e.g., 200", help="Range: 0-600 kg/ha")
+            P_input = st.text_input(get_translation('phosphorus', current_lang), placeholder="e.g., 30", help="Range: 0-120 kg/ha")
+            K_input = st.text_input(get_translation('potassium', current_lang), placeholder="e.g., 150", help="Range: 0-800 kg/ha")
+            pH_input = st.text_input(get_translation('ph_value', current_lang), placeholder="e.g., 6.5", help="Range: 3.5-10.0")
             
-            submit_button = st.form_submit_button("🔍 Analyze Soil", use_container_width=True)
+            submit_button = st.form_submit_button(get_translation('analyze_button', current_lang), use_container_width=True)
             
             if submit_button:
                 # Validate inputs
@@ -452,6 +717,8 @@ elif st.session_state.page == 'input':
 #---------------------------
 
 elif st.session_state.page == 'output':
+    current_lang = st.session_state.language
+    
     # Get values from session state
     N = st.session_state.N
     P = st.session_state.P
@@ -459,46 +726,46 @@ elif st.session_state.page == 'output':
     pH = st.session_state.pH
     
     # Run predictions
-    soil_health, reason = predict_soil_health(N, P, K, pH)
+    soil_health, reason = predict_soil_health(N, P, K, pH, current_lang)
     primary, conf = recommend_fertilizer(N, P, K, soil_health)
-    ph_cat, ph_text = ph_category_and_text(pH)
+    ph_cat, ph_text = ph_category_and_text(pH, current_lang)
     
     # Header
-    st.markdown("<h1 style='text-align:center; color:#059669;'>📊 SOILS PARK - Analysis Results</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align:center; color:#059669;'>{get_translation('output_page_title', current_lang)}</h1>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
     # Display input values
-    st.markdown("<h3 style='color:#065f46;'>📥 Input Values</h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='color:#065f46;'>{get_translation('input_values', current_lang)}</h3>", unsafe_allow_html=True)
     input_col1, input_col2, input_col3, input_col4 = st.columns(4)
-    input_col1.metric("Nitrogen (N)", f"{N} kg/ha")
-    input_col2.metric("Phosphorus (P)", f"{P} kg/ha")
-    input_col3.metric("Potassium (K)", f"{K} kg/ha")
-    input_col4.metric("pH", f"{pH}")
+    input_col1.metric(get_translation('nitrogen', current_lang), f"{N} kg/ha")
+    input_col2.metric(get_translation('phosphorus', current_lang), f"{P} kg/ha")
+    input_col3.metric(get_translation('potassium', current_lang), f"{K} kg/ha")
+    input_col4.metric(get_translation('ph_value', current_lang), f"{pH}")
     
     st.markdown("---")
     
     # Main results
-    st.markdown("<h3 style='color:#065f46;'>🎯 Primary Results</h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='color:#065f46;'>🎯 {get_translation('Primary Results', current_lang)}</h3>", unsafe_allow_html=True)
     c1, c2, c3 = st.columns(3)
     
     # Color coding for soil health
     health_color = {"Healthy": "🟢", "Moderate": "🟡", "Low": "🔴", "Unknown": "⚪"}
-    c1.markdown(f"<h4 style='color:#065f46;'>{health_color.get(soil_health, '⚪')} Soil Health</h4>", unsafe_allow_html=True)
+    c1.markdown(f"<h4 style='color:#065f46;'>{health_color.get(soil_health, '⚪')} {get_translation('soil_health', current_lang)}</h4>", unsafe_allow_html=True)
     c1.markdown(f"<h3 style='color:#065f46;'><strong>{soil_health}</strong></h3>", unsafe_allow_html=True)
     c1.markdown(f"<p style='color:#065f46;'><em>{reason}</em></p>", unsafe_allow_html=True)
     
-    c2.markdown("<h4 style='color:#065f46;'>💊 Recommended Fertilizer</h4>", unsafe_allow_html=True)
+    c2.markdown(f"<h4 style='color:#065f46;'>💊 {get_translation('recommended_fertilizer', current_lang)}</h4>", unsafe_allow_html=True)
     c2.markdown(f"<h3 style='color:#065f46;'><strong>{primary}</strong></h3>", unsafe_allow_html=True)
     c2.markdown(f"<p style='color:#065f46;'><em>Confidence: {conf*100:.2f}%</em></p>", unsafe_allow_html=True)
     
-    c3.markdown("<h4 style='color:#065f46;'>🧪 pH Category</h4>", unsafe_allow_html=True)
+    c3.markdown(f"<h4 style='color:#065f46;'>🧪 {get_translation('ph_category', current_lang)}</h4>", unsafe_allow_html=True)
     c3.markdown(f"<h3 style='color:#065f46;'><strong>{ph_cat}</strong></h3>", unsafe_allow_html=True)
     c3.markdown(f"<p style='color:#065f46;'><em>{ph_text}</em></p>", unsafe_allow_html=True)
     
     st.markdown("---")
     
     # Get Recommendations button (expandable)
-    if st.button("📋 Get Detailed Recommendations", use_container_width=True, type="primary"):
+    if st.button(get_translation('detailed_recommendations', current_lang), use_container_width=True, type="primary"):
         st.session_state.show_details = not st.session_state.show_details
     
     # Show details if expanded
@@ -506,27 +773,27 @@ elif st.session_state.page == 'output':
         st.markdown("---")
         
         # ICAR Tips
-        st.markdown("<h3 style='color:#065f46;'>🌱 ICAR Action Plan</h3>", unsafe_allow_html=True)
-        st.info(icar_tip(primary, soil_health))
+        st.markdown(f"<h3 style='color:#065f46;'>{get_translation('icar_plan', current_lang)}</h3>", unsafe_allow_html=True)
+        st.info(icar_tip(primary, soil_health, current_lang))
         st.markdown(f"<p style='color:#065f46;'><strong>pH Management:</strong> {ph_text}</p>", unsafe_allow_html=True)
         
         st.markdown("---")
         
         # Nutrient Warnings
-        st.markdown("<h3 style='color:#065f46;'>⚠️ Nutrient Analysis & Quick Actions</h3>", unsafe_allow_html=True)
-        warnings = nutrient_warnings(N, P, K)
+        st.markdown(f"<h3 style='color:#065f46;'>{get_translation('nutrient_analysis', current_lang)}</h3>", unsafe_allow_html=True)
+        warnings = nutrient_warnings(N, P, K, current_lang)
         for msg in warnings:
             st.markdown(f"<p style='color:#065f46;'>• {msg}</p>", unsafe_allow_html=True)
         
         # Charts
         if show_charts:
             st.markdown("---")
-            st.markdown("<h3 style='color:#065f46;'>📈 Visual Analysis</h3>", unsafe_allow_html=True)
+            st.markdown(f"<h3 style='color:#065f46;'>{get_translation('visual_analysis', current_lang)}</h3>", unsafe_allow_html=True)
             
             chart_col1, chart_col2 = st.columns(2)
             
             with chart_col1:
-                st.markdown("<p style='color:#065f46;'><strong>Nutrient Distribution</strong></p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='color:#065f46;'><strong>{get_translation('nutrient_distribution', current_lang)}</strong></p>", unsafe_allow_html=True)
                 fig, ax = plt.subplots(figsize=(6,4))
                 nutrients = ['Nitrogen', 'Phosphorus', 'Potassium']
                 vals = [N, P, K]
@@ -547,7 +814,7 @@ elif st.session_state.page == 'output':
                 st.pyplot(fig)
             
             with chart_col2:
-                st.markdown("<p style='color:#065f46;'><strong>pH Status</strong></p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='color:#065f46;'><strong>{get_translation('ph_status', current_lang)}</strong></p>", unsafe_allow_html=True)
                 fig2, ax2 = plt.subplots(figsize=(6,4))
                 
                 # pH scale visualization
@@ -581,7 +848,7 @@ elif st.session_state.page == 'output':
     nav_col1, nav_col2, nav_col3 = st.columns([1, 1, 1])
     
     with nav_col2:
-        if st.button("🔄 Analyze New Sample", use_container_width=True):
+        if st.button(get_translation('analyze_new', current_lang), use_container_width=True):
             st.session_state.page = 'input'
             st.session_state.show_details = False
             st.rerun()
@@ -591,4 +858,4 @@ elif st.session_state.page == 'output':
 #---------------------------
 
 st.markdown("---") 
-st.caption("Built for educational & prototyping purposes. Always validate recommendations with local soil labs and agronomists.")
+st.caption(get_translation('footer', st.session_state.language))
