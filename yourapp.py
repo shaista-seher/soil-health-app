@@ -17,7 +17,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt 
 from matplotlib.ticker import MaxNLocator
 
-st.set_page_config(page_title="Soil Spark", 
+st.set_page_config(page_title="Soil  Spark", 
                    layout="wide", 
                    initial_sidebar_state="expanded")
 
@@ -115,7 +115,7 @@ soil_df, fert_df = load_datasets()
 #---------------------------
 
 with st.sidebar: 
-    st.header("Soil Spark") 
+    st.header("Soil  Spark") 
     st.write("Upload datasets if not present in project folder") 
     soil_upload = st.file_uploader("Upload soilhealth.csv", type=['csv']) 
     fert_upload = st.file_uploader("Upload fertilizer.csv", type=['csv'])
