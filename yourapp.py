@@ -25,7 +25,6 @@ st.set_page_config(page_title="Soil  Spark",
 # Add light mint green background and styling
 #-------------------------
 def add_mint_background():
-    def add_mint_background():
     css = """
     <style>
     .stApp {
