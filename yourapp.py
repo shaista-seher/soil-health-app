@@ -17,7 +17,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt 
 from matplotlib.ticker import MaxNLocator
 
-st.set_page_config(page_title="Soil  Spark", 
+st.set_page_config(page_title="Soil Spark", 
                    layout="wide", 
                    initial_sidebar_state="expanded")
 
@@ -95,6 +95,45 @@ def add_mint_background():
         border: 2px solid #047857 !important;
         color: #064e3b !important;
     }
+        /* ADD THIS NEW CODE FOR RED BUTTONS */
+    /* Target Start Journey button */
+    div[data-testid="stButton"]:has(button:contains("Start Journey")) button {
+        background-color: #dc2626 !important;
+        color: white !important;
+        border: 2px solid #b91c1c !important;
+    }
+    
+    div[data-testid="stButton"]:has(button:contains("Start Journey")) button:hover {
+        background-color: #b91c1c !important;
+        border: 2px solid #991b1b !important;
+        color: white !important;
+    }
+    
+    /* Target Back button */
+    div[data-testid="stButton"]:has(button:contains("Back")) button {
+        background-color: #dc2626 !important;
+        color: white !important;
+        border: 2px solid #b91c1c !important;
+    }
+    
+    div[data-testid="stButton"]:has(button:contains("Back")) button:hover {
+        background-color: #b91c1c !important;
+        border: 2px solid #991b1b !important;
+        color: white !important;
+    }
+    
+    /* Target Analyze New Sample button */
+    div[data-testid="stButton"]:has(button:contains("Analyze New Sample")) button {
+        background-color: #dc2626 !important;
+        color: white !important;
+        border: 2px solid #b91c1c !important;
+    }
+    
+    div[data-testid="stButton"]:has(button:contains("Analyze New Sample")) button:hover {
+        background-color: #b91c1c !important;
+        border: 2px solid #991b1b !important;
+        color: white !important;
+    }
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
@@ -106,7 +145,7 @@ add_mint_background()
 
 translations = {
     'english': {
-        'app_title': 'SOILS PARK',
+        'app_title': 'SOIL SPARK',
         'app_subtitle': '🌱 AI-Powered Soil Health & Fertilizer Guidance 🌱',
         'start_button': '🚀 Start Journey',
         'language_page_title': 'Choose Your Language',
