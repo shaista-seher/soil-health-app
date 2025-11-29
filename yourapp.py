@@ -99,40 +99,40 @@ def add_mint_background():
     /* Target Start Journey button */
     div[data-testid="stButton"]:has(button:contains("Start Journey")) button {
         background-color: #dc2626 !important;
-        color: white !important;
+        color: red !important;
         border: 2px solid #b91c1c !important;
     }
     
     div[data-testid="stButton"]:has(button:contains("Start Journey")) button:hover {
         background-color: #b91c1c !important;
         border: 2px solid #991b1b !important;
-        color: white !important;
+        color: red !important;
     }
     
     /* Target Back button */
     div[data-testid="stButton"]:has(button:contains("Back")) button {
         background-color: #dc2626 !important;
-        color: white !important;
+        color: red !important;
         border: 2px solid #b91c1c !important;
     }
     
     div[data-testid="stButton"]:has(button:contains("Back")) button:hover {
         background-color: #b91c1c !important;
         border: 2px solid #991b1b !important;
-        color: white !important;
+        color: red !important;
     }
     
     /* Target Analyze New Sample button */
     div[data-testid="stButton"]:has(button:contains("Analyze New Sample")) button {
         background-color: #dc2626 !important;
-        color: white !important;
+        color: red !important;
         border: 2px solid #b91c1c !important;
     }
     
     div[data-testid="stButton"]:has(button:contains("Analyze New Sample")) button:hover {
         background-color: #b91c1c !important;
         border: 2px solid #991b1b !important;
-        color: white !important;
+        color: red !important;
     }
     </style>
     """
