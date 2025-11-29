@@ -879,18 +879,18 @@ elif st.session_state.page == 'output':
                 ax.grid(axis='x', alpha=0.3)
                 ax.legend()
                 
-          plt.tight_layout()
-          st.pyplot(fig_health)
+            plt.tight_layout()
+            st.pyplot(fig_health)
                 
                 # Interpretation
-          st.markdown(f"""
-          <div style='background-color: #d1fae5; padding: 15px; border-radius: 10px; border: 1px solid #059669; margin-top: 15px;'>
-          <strong>📊 Interpretation Guide:</strong><br>
-            • <span style='color:#e74c3c'><strong>Red (Low)</strong></span>: Nutrient deficiency - requires immediate attention<br>
-            • <span style='color:#f39c12'><strong>Orange (Moderate)</strong></span>: Acceptable but could be improved<br>
-            • <span style='color:#2ecc71'><strong>Green (Healthy)</strong></span>: Optimal range for plant growth
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(f"""
+            <div style='background-color: #d1fae5; padding: 15px; border-radius: 10px; border: 1px solid #059669; margin-top: 15px;'>
+            <strong>📊 Interpretation Guide:</strong><br>
+              • <span style='color:#e74c3c'><strong>Red (Low)</strong></span>: Nutrient deficiency - requires immediate attention<br>
+              • <span style='color:#f39c12'><strong>Orange (Moderate)</strong></span>: Acceptable but could be improved<br>
+              • <span style='color:#2ecc71'><strong>Green (Healthy)</strong></span>: Optimal range for plant growth
+              </div>
+              """, unsafe_allow_html=True)
             
             with chart_col1:
                         # pH Effect Chart
