@@ -847,31 +847,109 @@ elif st.session_state.page == 'output':
                 st.pyplot(fig)
             
             with chart_col2:
-                st.markdown(f"<p style='color:#065f46;'><strong>{get_translation('ph_status', current_lang)}</strong></p>", unsafe_allow_html=True)
-                fig2, ax2 = plt.subplots(figsize=(6,4))
+                        # pH Effect Chart
+                st.markdown("---")
+                st.markdown(f"<h3 style='color:#065f46;'>🧪 pH Impact on Nutrient Availability</h3>", unsafe_allow_html=True)
+                st.markdown("<p style='color:#065f46;'>How soil pH affects nutrient absorption by plants</p>", unsafe_allow_html=True)
                 
-                # pH scale visualization
-                ph_range = np.linspace(3.5, 10, 100)
-                colors_scale = plt.cm.RdYlGn(np.linspace(0, 1, len(ph_range)))
+                fig_ph, ax_ph = plt.subplots(figsize=(10, 5))
                 
-                for i in range(len(ph_range)-1):
-                    ax2.barh(0, 0.065, left=ph_range[i], height=0.5, 
-                            color=colors_scale[i], edgecolor='none')
+                # pH ranges
+                ph_categories = ['Highly Acidic\n(4.0-5.5)', 'Slightly Acidic\n(5.5-6.5)', 'Neutral\n(6.5-7.5)', 
+                                'Slightly Alkaline\n(7.5-8.5)', 'Highly Alkaline\n(8.5-9.0)']
                 
-                # Mark current pH
-                ax2.plot([pH, pH], [-0.3, 0.3], 'k-', linewidth=3, marker='v', 
-                        markersize=12, label=f'Your pH: {pH}')
+                # Nutrient availability scores (relative)
+                nitrogen_avail = [30, 80, 100, 70, 40]
+                phosphorus_avail = [20, 90, 100, 60, 20]
+                potassium_avail = [50, 90, 100, 80, 50]
+                micronutrient_avail = [90, 70, 50, 30, 20]
                 
-                ax2.set_xlim(3.5, 10)
-                ax2.set_ylim(-0.5, 0.5)
-                ax2.set_xlabel('pH Value', fontsize=12)
-                ax2.set_title(f'pH Level: {ph_cat}', fontsize=14, weight='bold')
-                ax2.set_yticks([])
-                ax2.legend(loc='upper right')
-                ax2.grid(axis='x', alpha=0.3)
+                x_pos = np.arange(len(ph_categories))
+                width = 0.2
+                
+                ax_ph.bar(x_pos - width*1.5, nitrogen_avail, width, label='Nitrogen', color='#2ecc71', alpha=0.8)
+                ax_ph.bar(x_pos - width/2, phosphorus_avail, width, label='Phosphorus', color='#3498db', alpha=0.8)
+                ax_ph.bar(x_pos + width/2, potassium_avail, width, label='Potassium', color='#e74c3c', alpha=0.8)
+                ax_ph.bar(x_pos + width*1.5, micronutrient_avail, width, label='Micronutrients', color='#f39c12', alpha=0.8)
+                
+                ax_ph.set_xlabel('pH Range', fontsize=12)
+                ax_ph.set_ylabel('Relative Availability (%)', fontsize=12)
+                ax_ph.set_title('Nutrient Availability at Different pH Levels', fontsize=14, weight='bold')
+                ax_ph.set_xticks(x_pos)
+                ax_ph.set_xticklabels(ph_categories, rotation=45, ha='right')
+                ax_ph.legend()
+                ax_ph.grid(axis='y', alpha=0.3)
+                ax_ph.set_ylim(0, 110)
+                
+                # Highlight current pH range
+                current_ph_range = None
+                if pH < 5.5:
+                    current_ph_range = 0
+                elif 5.5 <= pH < 6.5:
+                    current_ph_range = 1
+                elif 6.5 <= pH <= 7.5:
+                    current_ph_range = 2
+                elif 7.5 < pH <= 8.5:
+                    current_ph_range = 3
+                else:
+                    current_ph_range = 4
+                    
+                ax_ph.axvline(x=current_ph_range, color='red', linestyle='--', alpha=0.8, linewidth=2, 
+                              label=f'Your pH: {pH}')
+                ax_ph.legend()
                 
                 plt.tight_layout()
-                st.pyplot(fig2)
+                st.pyplot(fig_ph)
+                
+                st.markdown("""
+                <div style='background-color: #d1fae5; padding: 15px; border-radius: 10px; border: 1px solid #059669;'>
+                <strong>💡 pH Insight:</strong> Your current pH level (<strong>{:.1f}</strong>) falls in the <strong>{}</strong> range. 
+                Most nutrients are optimally available in neutral pH (6.5-7.5).
+                </div>
+                """.format(pH, ph_cat), unsafe_allow_html=True)
+                    # Feature Importance Plot
+        st.markdown("---")
+        st.markdown(f"<h3 style='color:#065f46;'>🔍 Feature Importance</h3>", unsafe_allow_html=True)
+        st.markdown("<p style='color:#065f46;'>Which nutrients most affect soil health predictions</p>", unsafe_allow_html=True)
+        
+        if soil_model is not None:
+            try:
+                # Get feature importances
+                importances = soil_model.feature_importances_
+                feature_names = ['Nitrogen', 'Phosphorus', 'Potassium', 'pH', 'N/P Ratio']
+                
+                # Create feature importance plot
+                fig_imp, ax_imp = plt.subplots(figsize=(8, 4))
+                y_pos = np.arange(len(feature_names))
+                ax_imp.barh(y_pos, importances, color=['#2ecc71', '#3498db', '#e74c3c', '#f39c12', '#9b59b6'])
+                ax_imp.set_yticks(y_pos)
+                ax_imp.set_yticklabels(feature_names)
+                ax_imp.set_xlabel('Importance Score', fontsize=12)
+                ax_imp.set_title('Feature Importance in Soil Health Prediction', fontsize=14, weight='bold')
+                ax_imp.grid(axis='x', alpha=0.3)
+                
+                plt.tight_layout()
+                st.pyplot(fig_imp)
+                
+                # Display importance percentages
+                imp_df = pd.DataFrame({
+                    'Feature': feature_names,
+                    'Importance (%)': (importances * 100).round(2)
+                })
+                st.dataframe(imp_df, use_container_width=True)
+                
+            except Exception as e:
+                st.warning(f"Could not generate feature importance: {e}")
+                # Confusion Matrix
+        st.markdown("---")
+        st.markdown(f"<h3 style='color:#065f46;'>📊 Model Performance</h3>", unsafe_allow_html=True)
+        st.markdown("<p style='color:#065f46;'>How accurately the model predicts different soil health levels</p>", unsafe_allow_html=True)
+        
+        # Note: This requires test data - you might need to modify based on your data availability
+        st.info("Model accuracy metrics available during training. Current soil health prediction is based on trained Random Forest model.")
+        
+        if soil_acc is not None:
+            st.metric("Overall Model Accuracy", f"{soil_acc*100:.2f}%")
         
         st.markdown("---")
         st.success("✅ Detailed recommendations generated. Use these results as guidance and cross-check with local agronomists for field-scale implementation.")
