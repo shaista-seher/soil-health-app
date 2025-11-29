@@ -27,60 +27,27 @@ st.set_page_config(page_title="Soil  Spark",
 def add_mint_background():
     css = """
     <style>
-    .stApp {
-        background-color: #dcfce7;
-    }
+    /* ... your existing CSS styles ... */
     
-    /* Style text inputs with green background */
-    .stTextInput > div > div > input {
-        background-color: #d1fae5 !important;
-        color: #065f46 !important;
-        border: 2px solid #059669 !important;
-        font-weight: 500;
-    }
-    
-    /* Style text input labels */
-    .stTextInput > label {
-        color: #065f46 !important;
+    /* Style ONLY the 3 specific red buttons using data-testid */
+    div[data-testid="stButton"] > button[kind="primary"]:has(+ div :contains("Start Journey")),
+    div[data-testid="stButton"] > button[kind="primary"]:has(+ div :contains("Analyze Soil")),
+    div[data-testid="stButton"] > button[kind="primary"]:has(+ div :contains("Analyze New Sample")) {
+        background-color: #dc2626 !important;
+        color: white !important;
+        border: 2px solid #b91c1c !important;
         font-weight: 600;
     }
     
-    /* Style metric containers */
-    .stMetric {
-        background-color: #d1fae5;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #059669;
+    div[data-testid="stButton"] > button[kind="primary"]:has(+ div :contains("Start Journey")):hover,
+    div[data-testid="stButton"] > button[kind="primary"]:has(+ div :contains("Analyze Soil")):hover,
+    div[data-testid="stButton"] > button[kind="primary"]:has(+ div :contains("Analyze New Sample")):hover {
+        background-color: #b91c1c !important;
+        border: 2px solid #991b1b !important;
+        color: white !important;
     }
     
-    /* Style metric labels and values */
-    .stMetric > label {
-        color: #065f46 !important;
-    }
-    
-    .stMetric > div {
-        color: #065f46 !important;
-    }
-    
-    /* Make all text darker green */
-    p, span, div {
-        color: #065f46;
-    }
-    
-    /* Style info boxes */
-    .stAlert {
-        background-color: #d1fae5 !important;
-        color: #065f46 !important;
-        border: 1px solid #059669 !important;
-    }
-    
-    /* Style success boxes */
-    .stSuccess {
-        background-color: #d1fae5 !important;
-        color: #065f46 !important;
-    }
-    
-    /* Style language selection buttons */
+    /* Keep ALL other buttons (including language boxes) in original green style */
     .stButton > button {
         background-color: #bbf7d0 !important;
         color: #065f46 !important;
