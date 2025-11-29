@@ -630,7 +630,7 @@ if st.session_state.page == 'start':
     with col2:
         st.markdown("""
         <h1 style='text-align: center; color: #059669; font-size: 72px; font-family: Georgia, serif; margin-bottom: 20px;'>
-            SOILS PARK
+            SOIL SPARK
         </h1>
         """, unsafe_allow_html=True)
         
@@ -641,7 +641,7 @@ if st.session_state.page == 'start':
         """, unsafe_allow_html=True)
         
         # Start button
-        if st.button("🚀 Start Journey", use_container_width=True, type="primary"):
+        if st.button("🚀 Start Journey", use_container_width=True, type="secondary"):
             st.session_state.page = 'language'
             st.rerun()
         
@@ -693,7 +693,7 @@ elif st.session_state.page == 'language':
         st.markdown("<br>", unsafe_allow_html=True)
         
         # Back button
-        if st.button("← Back", use_container_width=True):
+        if st.button("← Back", use_container_width=True, type="secondary" ):
             st.session_state.page = 'start'
             st.rerun()
 
@@ -1044,7 +1044,7 @@ elif st.session_state.page == 'output':
     nav_col1, nav_col2, nav_col3 = st.columns([1, 1, 1])
     
     with nav_col2:
-        if st.button(get_translation('analyze_new', current_lang), use_container_width=True):
+        if st.button(get_translation('analyze_new', current_lang), use_container_width=True, type="secondary"):
             st.session_state.page = 'input'
             st.session_state.show_details = False
             st.rerun()
