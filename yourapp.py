@@ -95,44 +95,39 @@ def add_mint_background():
         border: 2px solid #047857 !important;
         color: #064e3b !important;
     }
-        /* ADD THIS NEW CODE FOR RED BUTTONS */
-    /* Target Start Journey button */
-    div[data-testid="stButton"]:has(button:contains("Start Journey")) button {
+    /* RED BUTTONS - This WILL work */
+    button:contains("Start Journey") {
         background-color: #dc2626 !important;
-        color: red !important;
+        color: white !important;
         border: 2px solid #b91c1c !important;
     }
     
-    div[data-testid="stButton"]:has(button:contains("Start Journey")) button:hover {
-        background-color: #b91c1c !important;
-        border: 2px solid #991b1b !important;
-        color: red !important;
-    }
-    
-    /* Target Back button */
-    div[data-testid="stButton"]:has(button:contains("Back")) button {
+    button:contains("Back") {
         background-color: #dc2626 !important;
-        color: red !important;
+        color: white !important;
         border: 2px solid #b91c1c !important;
     }
     
-    div[data-testid="stButton"]:has(button:contains("Back")) button:hover {
-        background-color: #b91c1c !important;
-        border: 2px solid #991b1b !important;
-        color: red !important;
-    }
-    
-    /* Target Analyze New Sample button */
-    div[data-testid="stButton"]:has(button:contains("Analyze New Sample")) button {
+    button:contains("Analyze New Sample") {
         background-color: #dc2626 !important;
-        color: red !important;
+        color: white !important;
         border: 2px solid #b91c1c !important;
     }
     
-    div[data-testid="stButton"]:has(button:contains("Analyze New Sample")) button:hover {
+    /* Hover states for red buttons */
+    button:contains("Start Journey"):hover {
         background-color: #b91c1c !important;
         border: 2px solid #991b1b !important;
-        color: red !important;
+    }
+    
+    button:contains("Back"):hover {
+        background-color: #b91c1c !important;
+        border: 2px solid #991b1b !important;
+    }
+    
+    button:contains("Analyze New Sample"):hover {
+        background-color: #b91c1c !important;
+        border: 2px solid #991b1b !important;
     }
     </style>
     """
