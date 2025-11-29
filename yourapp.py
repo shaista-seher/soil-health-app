@@ -25,6 +25,7 @@ st.set_page_config(page_title="Soil  Spark",
 # Add light mint green background and styling
 #-------------------------
 def add_mint_background():
+    def add_mint_background():
     css = """
     <style>
     .stApp {
@@ -79,10 +80,25 @@ def add_mint_background():
         background-color: #d1fae5 !important;
         color: #065f46 !important;
     }
+    
+    /* Style language selection buttons */
+    .stButton > button {
+        background-color: #bbf7d0 !important;
+        color: #065f46 !important;
+        border: 2px solid #059669 !important;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    .stButton > button:hover {
+        background-color: #86efac !important;
+        border: 2px solid #047857 !important;
+        color: #064e3b !important;
+    }
     </style>
     """
     st.markdown(css, unsafe_allow_html=True)
-
 add_mint_background()
 
 #---------------------------
