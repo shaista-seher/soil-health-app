@@ -80,7 +80,7 @@ def add_mint_background():
         color: #065f46 !important;
     }
     
-    /* Style ALL buttons as green by default */
+    /* Style language selection buttons */
     .stButton > button {
         background-color: #bbf7d0 !important;
         color: #065f46 !important;
@@ -95,44 +95,9 @@ def add_mint_background():
         border: 2px solid #047857 !important;
         color: #064e3b !important;
     }
-    
-    /* RED BUTTONS - This WILL work */
-    button:contains("Start Journey") {
-        background-color: #dc2626 !important;
-        color: white !important;
-        border: 2px solid #b91c1c !important;
-    }
-    
-    button:contains("Back") {
-        background-color: #dc2626 !important;
-        color: white !important;
-        border: 2px solid #b91c1c !important;
-    }
-    
-    button:contains("Analyze New Sample") {
-        background-color: #dc2626 !important;
-        color: white !important;
-        border: 2px solid #b91c1c !important;
-    }
-    
-    /* Hover states for red buttons */
-    button:contains("Start Journey"):hover {
-        background-color: #b91c1c !important;
-        border: 2px solid #991b1b !important;
-    }
-    
-    button:contains("Back"):hover {
-        background-color: #b91c1c !important;
-        border: 2px solid #991b1b !important;
-    }
-    
-    button:contains("Analyze New Sample"):hover {
-        background-color: #b91c1c !important;
-        border: 2px solid #991b1b !important;
-    }
     </style>
     """
-    st.markdown(css, unsafe_allow_html=True)
+    st.markdown(css, unsafe_allow_html=True) 
 add_mint_background()
 
 #---------------------------
