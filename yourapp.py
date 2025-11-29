@@ -824,79 +824,78 @@ elif st.session_state.page == 'output':
             st.markdown(f"<h3 style='color:#065f46;'>{get_translation('visual_analysis', current_lang)}</h3>", unsafe_allow_html=True)
             
             chart_col1, chart_col2 = st.columns(2)
-            
-            with chart_col1:
-                                        # Soil Health vs Nutrient Levels
-                st.markdown("---")
-                st.markdown(f"<h3 style='color:#065f46;'>🌱 Soil Health vs Nutrient Levels</h3>", unsafe_allow_html=True)
-                st.markdown("<p style='color:#065f46;'>How different nutrient ranges affect soil health classification</p>", unsafe_allow_html=True)
+
+            # Soil Health vs Nutrient Levels
+            st.markdown("---")
+            st.markdown(f"<h3 style='color:#065f46;'>🌱 Soil Health vs Nutrient Levels</h3>", unsafe_allow_html=True)
+            st.markdown("<p style='color:#065f46;'>How different nutrient ranges affect soil health classification</p>", unsafe_allow_html=True)
                 
-                # Create sample data based on user's input and general soil science
-                health_categories = ['Low', 'Moderate', 'Healthy']
+            # Create sample data based on user's input and general soil science
+            health_categories = ['Low', 'Moderate', 'Healthy']
                 
                 # Nutrient ranges for each health category (simplified for demonstration)
-                nutrient_ranges = {
-                    'Nitrogen (kg/ha)': {'Low': [0, 200], 'Moderate': [200, 400], 'Healthy': [400, 600]},
-                    'Phosphorus (kg/ha)': {'Low': [0, 15], 'Moderate': [15, 35], 'Healthy': [35, 120]},
-                    'Potassium (kg/ha)': {'Low': [0, 110], 'Moderate': [110, 280], 'Healthy': [280, 800]}
-                }
+            nutrient_ranges = {
+                 'Nitrogen (kg/ha)': {'Low': [0, 200], 'Moderate': [200, 400], 'Healthy': [400, 600]},
+                 'Phosphorus (kg/ha)': {'Low': [0, 15], 'Moderate': [15, 35], 'Healthy': [35, 120]},
+                 'Potassium (kg/ha)': {'Low': [0, 110], 'Moderate': [110, 280], 'Healthy': [280, 800]}
+            }
                 
-                fig_health, axes = plt.subplots(1, 3, figsize=(15, 5))
-                colors = ['#e74c3c', '#f39c12', '#2ecc71']  # Red, Orange, Green
+            fig_health, axes = plt.subplots(1, 3, figsize=(15, 5))
+            colors = ['#e74c3c', '#f39c12', '#2ecc71']  # Red, Orange, Green
                 
-                nutrients = ['Nitrogen (kg/ha)', 'Phosphorus (kg/ha)', 'Potassium (kg/ha)']
-                user_values = [N, P, K]
+            nutrients = ['Nitrogen (kg/ha)', 'Phosphorus (kg/ha)', 'Potassium (kg/ha)']
+            user_values = [N, P, K]
                 
-                for i, (nutrient, ax) in enumerate(zip(nutrients, axes)):
-                    ranges = nutrient_ranges[nutrient]
+            for i, (nutrient, ax) in enumerate(zip(nutrients, axes)):
+                ranges = nutrient_ranges[nutrient]
                     
                     # Create horizontal bars for each health category
-                    y_pos = np.arange(len(health_categories))
-                    bar_values = [ranges[cat][1] - ranges[cat][0] for cat in health_categories]
+                 y_pos = np.arange(len(health_categories))
+                 bar_values = [ranges[cat][1] - ranges[cat][0] for cat in health_categories]
                     
-                    bars = ax.barh(y_pos, bar_values, color=colors, alpha=0.7, edgecolor='black', linewidth=1)
+                 bars = ax.barh(y_pos, bar_values, color=colors, alpha=0.7, edgecolor='black', linewidth=1)
                     
                     # Add range labels
-                    for j, (cat, bar) in enumerate(zip(health_categories, bars)):
-                        width = bar.get_width()
-                        ax.text(width/2, bar.get_y() + bar.get_height()/2, 
-                               f'{ranges[cat][0]}-{ranges[cat][1]}', 
-                               ha='center', va='center', fontweight='bold', fontsize=10)
+                 for j, (cat, bar) in enumerate(zip(health_categories, bars)):
+                     width = bar.get_width()
+                     ax.text(width/2, bar.get_y() + bar.get_height()/2, 
+                           f'{ranges[cat][0]}-{ranges[cat][1]}', 
+                           ha='center', va='center', fontweight='bold', fontsize=10)
                     
-                    # Mark user's current value
-                    user_val = user_values[i]
-                    user_category = None
-                    for cat in health_categories:
-                        if ranges[cat][0] <= user_val <= ranges[cat][1]:
-                            user_category = cat
-                            break
+                  # Mark user's current value
+                 user_val = user_values[i]
+                 user_category = None
+                 for cat in health_categories:
+                     if ranges[cat][0] <= user_val <= ranges[cat][1]:
+                          user_category = cat
+                          break
                     
-                    if user_category:
-                        cat_index = health_categories.index(user_category)
-                        ax.axhline(y=cat_index, color='red', linestyle='--', linewidth=2, 
-                                  label=f'Your {nutrient.split()[0]}: {user_val}')
+                 if user_category:
+                     cat_index = health_categories.index(user_category)
+                     ax.axhline(y=cat_index, color='red', linestyle='--', linewidth=2, 
+                              label=f'Your {nutrient.split()[0]}: {user_val}')
                     
-                    ax.set_yticks(y_pos)
-                    ax.set_yticklabels(health_categories)
-                    ax.set_xlabel(nutrient, fontsize=12)
-                    ax.set_title(f'{nutrient.split()[0]} Ranges', fontsize=13, weight='bold')
-                    ax.grid(axis='x', alpha=0.3)
-                    ax.legend()
+                 ax.set_yticks(y_pos)
+                 ax.set_yticklabels(health_categories)
+                 ax.set_xlabel(nutrient, fontsize=12)
+                 ax.set_title(f'{nutrient.split()[0]} Ranges', fontsize=13, weight='bold')
+                 ax.grid(axis='x', alpha=0.3)
+                 ax.legend()
                 
-                plt.tight_layout()
-                st.pyplot(fig_health)
+            plt.tight_layout()
+            st.pyplot(fig_health)
                 
                 # Interpretation
-                st.markdown(f"""
-                <div style='background-color: #d1fae5; padding: 15px; border-radius: 10px; border: 1px solid #059669; margin-top: 15px;'>
-                <strong>📊 Interpretation Guide:</strong><br>
-                • <span style='color:#e74c3c'><strong>Red (Low)</strong></span>: Nutrient deficiency - requires immediate attention<br>
-                • <span style='color:#f39c12'><strong>Orange (Moderate)</strong></span>: Acceptable but could be improved<br>
-                • <span style='color:#2ecc71'><strong>Green (Healthy)</strong></span>: Optimal range for plant growth
-                </div>
-                """, unsafe_allow_html=True)
+            st.markdown(f"""
+            <div style='background-color: #d1fae5; padding: 15px; border-radius: 10px; border: 1px solid #059669; margin-top: 15px;'>
+            <strong>📊 Interpretation Guide:</strong><br>
+             • <span style='color:#e74c3c'><strong>Red (Low)</strong></span>: Nutrient deficiency - requires immediate attention<br>
+             • <span style='color:#f39c12'><strong>Orange (Moderate)</strong></span>: Acceptable but could be improved<br>
+             • <span style='color:#2ecc71'><strong>Green (Healthy)</strong></span>: Optimal range for plant growth
+             </div>
+             """, unsafe_allow_html=True)
             
-            with chart_col2:
+            with chart_col1:
                         # pH Effect Chart
                 st.markdown("---")
                 st.markdown(f"<h3 style='color:#065f46;'>🧪 pH Impact on Nutrient Availability</h3>", unsafe_allow_html=True)
@@ -957,39 +956,42 @@ elif st.session_state.page == 'output':
                 Most nutrients are optimally available in neutral pH (6.5-7.5).
                 </div>
                 """.format(pH, ph_cat), unsafe_allow_html=True)
-                    # Feature Importance Plot
-        st.markdown("---")
-        st.markdown(f"<h3 style='color:#065f46;'>🔍 Feature Importance</h3>", unsafe_allow_html=True)
-        st.markdown("<p style='color:#065f46;'>Which nutrients most affect soil health predictions</p>", unsafe_allow_html=True)
-        
-        if soil_model is not None:
-            try:
-                # Get feature importances
-                importances = soil_model.feature_importances_
-                feature_names = ['Nitrogen', 'Phosphorus', 'Potassium', 'pH', 'N/P Ratio']
+           
+            with chart_col2:
+                 
+                            # Feature Importance Plot
+                st.markdown("---")
+                st.markdown(f"<h3 style='color:#065f46;'>🔍 Feature Importance</h3>", unsafe_allow_html=True)
+                st.markdown("<p style='color:#065f46;'>Which nutrients most affect soil health predictions</p>", unsafe_allow_html=True)
                 
-                # Create feature importance plot
-                fig_imp, ax_imp = plt.subplots(figsize=(8, 4))
-                y_pos = np.arange(len(feature_names))
-                ax_imp.barh(y_pos, importances, color=['#2ecc71', '#3498db', '#e74c3c', '#f39c12', '#9b59b6'])
-                ax_imp.set_yticks(y_pos)
-                ax_imp.set_yticklabels(feature_names)
-                ax_imp.set_xlabel('Importance Score', fontsize=12)
-                ax_imp.set_title('Feature Importance in Soil Health Prediction', fontsize=14, weight='bold')
-                ax_imp.grid(axis='x', alpha=0.3)
-                
-                plt.tight_layout()
-                st.pyplot(fig_imp)
-                
-                # Display importance percentages
-                imp_df = pd.DataFrame({
-                    'Feature': feature_names,
-                    'Importance (%)': (importances * 100).round(2)
-                })
-                st.dataframe(imp_df, use_container_width=True)
-                
-            except Exception as e:
-                st.warning(f"Could not generate feature importance: {e}")
+                if soil_model is not None:
+                    try:
+                        # Get feature importances
+                        importances = soil_model.feature_importances_
+                        feature_names = ['Nitrogen', 'Phosphorus', 'Potassium', 'pH', 'N/P Ratio']
+                        
+                        # Create feature importance plot
+                        fig_imp, ax_imp = plt.subplots(figsize=(8, 4))
+                        y_pos = np.arange(len(feature_names))
+                        ax_imp.barh(y_pos, importances, color=['#2ecc71', '#3498db', '#e74c3c', '#f39c12', '#9b59b6'])
+                        ax_imp.set_yticks(y_pos)
+                        ax_imp.set_yticklabels(feature_names)
+                        ax_imp.set_xlabel('Importance Score', fontsize=12)
+                        ax_imp.set_title('Feature Importance in Soil Health Prediction', fontsize=14, weight='bold')
+                        ax_imp.grid(axis='x', alpha=0.3)
+                        
+                        plt.tight_layout()
+                        st.pyplot(fig_imp)
+                        
+                        # Display importance percentages
+                        imp_df = pd.DataFrame({
+                            'Feature': feature_names,
+                            'Importance (%)': (importances * 100).round(2)
+                        })
+                        st.dataframe(imp_df, use_container_width=True)
+                        
+                    except Exception as e:
+                        st.warning(f"Could not generate feature importance: {e}")
                 # Confusion Matrix
         st.markdown("---")
         st.markdown(f"<h3 style='color:#065f46;'>📊 Model Performance</h3>", unsafe_allow_html=True)
