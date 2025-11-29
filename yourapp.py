@@ -80,7 +80,7 @@ def add_mint_background():
         color: #065f46 !important;
     }
     
-    /* Style language selection buttons */
+    /* Style ALL buttons as green by default */
     .stButton > button {
         background-color: #bbf7d0 !important;
         color: #065f46 !important;
@@ -95,6 +95,7 @@ def add_mint_background():
         border: 2px solid #047857 !important;
         color: #064e3b !important;
     }
+    
     /* RED BUTTONS - This WILL work */
     button:contains("Start Journey") {
         background-color: #dc2626 !important;
