@@ -364,7 +364,7 @@ soil_df, fert_df = load_datasets()
 #---------------------------
 
 with st.sidebar: 
-    st.header("Soil  Spark") 
+    st.header("Soils  Park") 
     st.write("Upload datasets if not present in project folder") 
     soil_upload = st.file_uploader("Upload soilhealth.csv", type=['csv']) 
     fert_upload = st.file_uploader("Upload fertilizer.csv", type=['csv'])
@@ -595,7 +595,7 @@ if st.session_state.page == 'start':
     with col2:
         st.markdown("""
         <h1 style='text-align: center; color: #059669; font-size: 72px; font-family: Georgia, serif; margin-bottom: 20px;'>
-            SOIL SPARK
+            SOILS  PARK
         </h1>
         """, unsafe_allow_html=True)
         
