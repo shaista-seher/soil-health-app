@@ -950,6 +950,76 @@ elif st.session_state.page == 'output':
         
         if soil_acc is not None:
             st.metric("Overall Model Accuracy", f"{soil_acc*100:.2f}%")
+
+                # Soil Health vs Nutrient Levels
+        st.markdown("---")
+        st.markdown(f"<h3 style='color:#065f46;'>🌱 Soil Health vs Nutrient Levels</h3>", unsafe_allow_html=True)
+        st.markdown("<p style='color:#065f46;'>How different nutrient ranges affect soil health classification</p>", unsafe_allow_html=True)
+        
+        # Create sample data based on user's input and general soil science
+        health_categories = ['Low', 'Moderate', 'Healthy']
+        
+        # Nutrient ranges for each health category (simplified for demonstration)
+        nutrient_ranges = {
+            'Nitrogen (kg/ha)': {'Low': [0, 200], 'Moderate': [200, 400], 'Healthy': [400, 600]},
+            'Phosphorus (kg/ha)': {'Low': [0, 15], 'Moderate': [15, 35], 'Healthy': [35, 120]},
+            'Potassium (kg/ha)': {'Low': [0, 110], 'Moderate': [110, 280], 'Healthy': [280, 800]}
+        }
+        
+        fig_health, axes = plt.subplots(1, 3, figsize=(15, 5))
+        colors = ['#e74c3c', '#f39c12', '#2ecc71']  # Red, Orange, Green
+        
+        nutrients = ['Nitrogen (kg/ha)', 'Phosphorus (kg/ha)', 'Potassium (kg/ha)']
+        user_values = [N, P, K]
+        
+        for i, (nutrient, ax) in enumerate(zip(nutrients, axes)):
+            ranges = nutrient_ranges[nutrient]
+            
+            # Create horizontal bars for each health category
+            y_pos = np.arange(len(health_categories))
+            bar_values = [ranges[cat][1] - ranges[cat][0] for cat in health_categories]
+            
+            bars = ax.barh(y_pos, bar_values, color=colors, alpha=0.7, edgecolor='black', linewidth=1)
+            
+            # Add range labels
+            for j, (cat, bar) in enumerate(zip(health_categories, bars)):
+                width = bar.get_width()
+                ax.text(width/2, bar.get_y() + bar.get_height()/2, 
+                       f'{ranges[cat][0]}-{ranges[cat][1]}', 
+                       ha='center', va='center', fontweight='bold', fontsize=10)
+            
+            # Mark user's current value
+            user_val = user_values[i]
+            user_category = None
+            for cat in health_categories:
+                if ranges[cat][0] <= user_val <= ranges[cat][1]:
+                    user_category = cat
+                    break
+            
+            if user_category:
+                cat_index = health_categories.index(user_category)
+                ax.axhline(y=cat_index, color='red', linestyle='--', linewidth=2, 
+                          label=f'Your {nutrient.split()[0]}: {user_val}')
+            
+            ax.set_yticks(y_pos)
+            ax.set_yticklabels(health_categories)
+            ax.set_xlabel(nutrient, fontsize=12)
+            ax.set_title(f'{nutrient.split()[0]} Ranges', fontsize=13, weight='bold')
+            ax.grid(axis='x', alpha=0.3)
+            ax.legend()
+        
+        plt.tight_layout()
+        st.pyplot(fig_health)
+        
+        # Interpretation
+        st.markdown(f"""
+        <div style='background-color: #d1fae5; padding: 15px; border-radius: 10px; border: 1px solid #059669; margin-top: 15px;'>
+        <strong>📊 Interpretation Guide:</strong><br>
+        • <span style='color:#e74c3c'><strong>Red (Low)</strong></span>: Nutrient deficiency - requires immediate attention<br>
+        • <span style='color:#f39c12'><strong>Orange (Moderate)</strong></span>: Acceptable but could be improved<br>
+        • <span style='color:#2ecc71'><strong>Green (Healthy)</strong></span>: Optimal range for plant growth
+        </div>
+        """, unsafe_allow_html=True)
         
         st.markdown("---")
         st.success("✅ Detailed recommendations generated. Use these results as guidance and cross-check with local agronomists for field-scale implementation.")
